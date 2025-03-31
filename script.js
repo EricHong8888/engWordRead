@@ -232,7 +232,7 @@ class WordCardApp {
         this.updateButtonState(readButton, true);
 
         // 设置安全定时器，确保按钮状态最终会恢复
-        const MAX_PLAY_DURATION = 10000; // 改为 10 秒
+        const MAX_PLAY_DURATION = 20000; // 改为 20 秒
         this.safetyTimer = setTimeout(() => {
             if (this.currentlyPlaying) {
                 console.log('Safety timeout triggered - resetting state');
