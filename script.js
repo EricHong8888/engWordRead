@@ -231,7 +231,7 @@ class WordCardApp {
         this.updateButtonState(readButton, true);
 
         // 设置安全定时器，确保按钮状态最终会恢复
-        const MAX_PLAY_DURATION = 10000; // 改为 10 秒
+        const MAX_PLAY_DURATION = 20000; // 改为 20 秒
         this.safetyTimer = setTimeout(() => {
             if (this.currentlyPlaying) {
                 console.log('Safety timeout triggered - resetting state');
@@ -248,7 +248,7 @@ class WordCardApp {
     async readSegments(segments, currentCard, readButton) {
         const segmentElements = currentCard.querySelectorAll('.segment');
         const SEGMENT_DURATION = 1200; // 每个音节的持续时间
-        const PAUSE_DURATION = 800;    // 音节之间的停顿时间
+        const PAUSE_DURATION = 500;    // 音节之间的停顿时间
 
         try {
             // 清除所有高亮
@@ -322,7 +322,7 @@ class WordCardApp {
             try {
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.voice = this.englishVoice;
-                utterance.rate = 0.7;  // 降低语速以匹配高亮显示
+                utterance.rate = 0.8;  // 降低语速以匹配高亮显示
                 utterance.pitch = 1;
 
                 utterance.onend = () => resolve();
