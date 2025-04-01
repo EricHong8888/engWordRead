@@ -79,9 +79,10 @@ class WordCardApp {
             voice.name.toLowerCase().includes('female') ||
             voice.name.toLowerCase().includes('Woman') ||
             voice.name.toLowerCase().includes('Karen') ||
+            vioce.name.toLowerCase().includes('com.apple.speech.synthesis.voice.karen')||
             voice.lang.includes('en-US') ||
-            voice.lang.includes('en-GB')
-        ) || voices[0];
+            voice.lang.includes('en-GB')|| 
+            voices[0];
         
         // 测试语音是否可用
         this.testVoice();
