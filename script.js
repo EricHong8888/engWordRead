@@ -137,7 +137,6 @@ class WordCardApp {
                            row[2] && // 音标
                            row[3] && // 切词
                            row[4];   // 发音方式
-                    // 注意：isMustLearn 可以为空
                 })
                 .map(row => {
                     // 处理发音方式的换行
@@ -232,7 +231,7 @@ class WordCardApp {
         this.updateButtonState(readButton, true);
 
         // 设置安全定时器，确保按钮状态最终会恢复
-        const MAX_PLAY_DURATION = 20000; // 改为 20 秒
+        const MAX_PLAY_DURATION = 3000; // 改为 3 秒
         this.safetyTimer = setTimeout(() => {
             if (this.currentlyPlaying) {
                 console.log('Safety timeout triggered - resetting state');
