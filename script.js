@@ -71,10 +71,13 @@ class WordCardApp {
     }
 
     setVoice(voices) {
-        // 优先使用英语声音
+        // 优先使用英语声音，并且是女声
         this.englishVoice = voices.find(voice => 
-            voice.lang.includes('en-US') || voice.lang.includes('en-GB')
-        ) || voices[1];
+            voice.name.toLowerCase().includes('female') ||
+            voice.name.toLowerCase().includes('woman') ||
+            voice.lang.includes('en-US') ||
+            voice.lang.includes('en-GB')
+        ) || voices[0];
         
         // 测试语音是否可用
         this.testVoice();
@@ -323,7 +326,7 @@ class WordCardApp {
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.voice = this.englishVoice;
                 utterance.rate = 0.8;  // 降低语速以匹配高亮显示
-                utterance.pitch = 1;
+                utterance.pitch = 1.2;
 
                 utterance.onend = () => resolve();
                 utterance.onerror = (error) => reject(error);
