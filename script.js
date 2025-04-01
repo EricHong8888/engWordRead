@@ -79,7 +79,7 @@ class WordCardApp {
             voice.name.toLowerCase().includes('female') ||
             voice.name.toLowerCase().includes('Woman') ||
             voice.name.toLowerCase().includes('Karen') ||
-            vioce.name.toLowerCase().includes('com.apple.speech.synthesis.voice.karen')||
+            vioce.name.toLowerCase().includes('com.apple.ttsbundle.Karen-compact')||
             voice.lang.includes('en-US') ||
             voice.lang.includes('en-GB')|| 
             voices[0];
