@@ -71,9 +71,12 @@ class WordCardApp {
     }
 
     setVoice(voices) {
+        //输出所有可用的声音
+        console.log('Available voices:', voices);
+        
         // 优先使用英语声音，并且是女声
         this.englishVoice = voices.find(voice => 
-            voice.name.toLowerCase().includes('Female') ||
+            voice.name.toLowerCase().includes('female') ||
             voice.name.toLowerCase().includes('Woman') ||
             voice.lang.includes('en-US') ||
             voice.lang.includes('en-GB')
