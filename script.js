@@ -71,17 +71,13 @@ class WordCardApp {
     }
 
     setVoice(voices) {
-        //输出所有可用的声音
-        console.log('Available voices:', voices);
-        
-        // 优先使用英语声音，并且是女声
+        // 优先使用英语声音
         this.englishVoice = voices.find(voice => 
             voice.name.toLowerCase().includes('female') ||
             voice.name.toLowerCase().includes('Woman') ||
             voice.name.toLowerCase().includes('com.apple.ttsbundle.Karen-compact') ||
             voice.lang.includes('en-US') || voice.lang.includes('en-GB')
-            ) || voices[0];
-        
+        ) || voices[0];
         // 测试语音是否可用
         this.testVoice();
     }
@@ -254,7 +250,7 @@ class WordCardApp {
     async readSegments(segments, currentCard, readButton) {
         const segmentElements = currentCard.querySelectorAll('.segment');
         const SEGMENT_DURATION = 1200; // 每个音节的持续时间
-        const PAUSE_DURATION = 500;    // 音节之间的停顿时间
+        const PAUSE_DURATION = 600;    // 音节之间的停顿时间
 
         try {
             // 清除所有高亮
@@ -329,7 +325,7 @@ class WordCardApp {
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.voice = this.englishVoice;
                 utterance.rate = 0.8;  // 降低语速以匹配高亮显示
-                utterance.pitch = 1.2;
+                utterance.pitch = 1;
 
                 utterance.onend = () => resolve();
                 utterance.onerror = (error) => reject(error);
