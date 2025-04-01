@@ -74,7 +74,7 @@ class WordCardApp {
         // 优先使用英语声音
         this.englishVoice = voices.find(voice => 
             voice.lang.includes('en-US') || voice.lang.includes('en-GB')
-        ) || voices[0];
+        ) || voices[1];
         
         // 测试语音是否可用
         this.testVoice();
