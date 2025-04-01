@@ -71,11 +71,9 @@ class WordCardApp {
     }
 
     setVoice(voices) {
-        // 优先使用女声
+        // 优先使用英语声音
         this.englishVoice = voices.find(voice => 
-            voice.name.toLowerCase().includes('female') || 
-            voice.lang.includes('en-US') || 
-            voice.lang.includes('en-GB')
+            voice.lang.includes('en-US') || voice.lang.includes('en-GB')
         ) || voices[0];
         
         // 测试语音是否可用
@@ -139,15 +137,24 @@ class WordCardApp {
                            row[2] && // 音标
                            row[3] && // 切词
                            row[4];   // 发音方式
+                    // 注意：isMustLearn 可以为空
                 })
                 .map(row => {
+                    // 处理发音方式的换行
+                    const pronunciation = String(row[4] || '')
+                        .trim()
+                        .split('/')
+                        .filter(Boolean)
+                        .map(part => part.trim())
+                        .join('\n');  // 使用换行符分隔
+
                     return {
                         word: String(row[0] || '').trim(),
                         chinese: String(row[1] || '').trim(),
                         phonetic: String(row[2] || '').trim(),
                         segments: String(row[3] || '').trim(),
-                        pronunciation: String(row[4] || '').trim(),
-                        isMustLearn: row[5] === '是' // 确保正确解析是否必会
+                        pronunciation: pronunciation,
+                        isMustLearn: row[5] === '是'
                     };
                 });
 
@@ -225,7 +232,7 @@ class WordCardApp {
         this.updateButtonState(readButton, true);
 
         // 设置安全定时器，确保按钮状态最终会恢复
-        const MAX_PLAY_DURATION = 3000; // 改为 3 秒
+        const MAX_PLAY_DURATION = 20000; // 改为 20 秒
         this.safetyTimer = setTimeout(() => {
             if (this.currentlyPlaying) {
                 console.log('Safety timeout triggered - resetting state');
@@ -316,8 +323,8 @@ class WordCardApp {
             try {
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.voice = this.englishVoice;
-                utterance.rate = 1.0;  // 适合女声的语速
-                utterance.pitch = 1.2;  // 提高音调以适应女声
+                utterance.rate = 0.7;  // 降低语速以匹配高亮显示
+                utterance.pitch = 1;
 
                 utterance.onend = () => resolve();
                 utterance.onerror = (error) => reject(error);
