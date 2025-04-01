@@ -78,8 +78,7 @@ class WordCardApp {
         this.englishVoice = voices.find(voice => 
             voice.name.toLowerCase().includes('female') ||
             voice.name.toLowerCase().includes('Woman') ||
-            voice.name.toLowerCase().includes('Moira') ||
-            voice.name.toLowerCase().includes('Samantha') ||
+            voice.name.toLowerCase().includes('Karen') ||
             voice.lang.includes('en-US') ||
             voice.lang.includes('en-GB')
         ) || voices[0];
